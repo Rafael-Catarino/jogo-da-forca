@@ -1,0 +1,87 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  text-align: center;
+  background-color: #d4ceaa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #2b2823;
+  color: #8fa691;
+  padding: 2px;
+  height: 50px;
+}
+
+#container-tip {
+  margin: 5px;
+  color: #cc3917;
+  font-size: larger;
+  font-weight: bold;
+}
+
+#container-itens {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#container-image {
+  margin-right: 8px;
+  padding: 5px;
+}
+
+#container-letter {
+  margin-right: 8px;
+  padding: 5px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#container-correct-letter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.div-letter {
+  background-color: rgba(255, 255, 255, 0.466);
+  display: flex;
+  color: #2b2823;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.button-letter {
+  border: solid 1px #2b2823;
+  border-radius: 5px;
+  color: #2b2823;
+  margin: 2px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.button-letter:not([disabled]):hover {
+  background-color: rgba(128, 128, 128, 0.445);
+}
+
+#container-wrong-letter {
+  display: flex;
+}
