@@ -5,22 +5,22 @@ const nomes = [
   "maria",
   "raquel",
   "laura",
-  "salome",
-  "joao",
-  "alzireia",
+  "leandro",
+  "miguel",
+  "natalia",
   "filomena",
-  "jose",
+  "leonardo",
 ];
 const frutas = [
-  "maça",
+  "abacate",
   "pera",
   "uva",
   "morango",
   "caqui",
   "banana",
-  "caju",
-  "maracuja",
-  "melao",
+  "banana",
+  "cereja",
+  "carambola",
   "laranja",
 ];
 const animais = [
@@ -36,16 +36,16 @@ const animais = [
   "Tartaruga",
 ];
 const cidades = [
-  "riodejaneiro",
+  "pequim",
   "londres",
   "salvador",
   "fortaleza",
   "porto",
-  "novaiorque",
+  "blumenal",
   "curitiba",
   "recife",
-  "portoalegre",
-  "belohorizonte"
+  "natal",
+  "manaus"
 ];
 
 const tipLetter = [nomes, frutas, animais, cidades];
@@ -58,7 +58,11 @@ const containerImage = document.querySelector('#container-image');
 const containerCorrectLetter = document.querySelector('#container-correct-letter');
 const containerButtonLetter = document.querySelector('#container-button-letter');
 const containerWrongLetter = document.querySelector('#container-wrong-letter');
+const containerItens = document.querySelector('#container-itens');
 const img = document.querySelector('img');
+const buttonDivEndOfTheGame = document.createElement('button');
+const divEndOfTheGame = document.createElement('div');
+const pDivEndOfTheGame = document.createElement('p');
 let word = '';
 let cont = 0;
 let contCorrect = 0;
@@ -96,10 +100,26 @@ const drawWord = () => {
   createDivsLetterCorrect(word);
 }
 
+const clickButtonDivEndOfTheGame = () => {
+  buttonDivEndOfTheGame.addEventListener('click', () => {
+    restartGame();
+  });
+}
+
+const wonTheGame = () => {
+  divEndOfTheGame.className = 'div-end-of-the-game';
+  pDivEndOfTheGame.innerText = 'Você Venceu';
+  buttonDivEndOfTheGame.className = 'button-div-won-the-game';
+  buttonDivEndOfTheGame.innerText = 'Voltar ao jogo'
+  divEndOfTheGame.appendChild(pDivEndOfTheGame);
+  divEndOfTheGame.appendChild(buttonDivEndOfTheGame);
+  containerItens.appendChild(divEndOfTheGame);
+  clickButtonDivEndOfTheGame();
+}
+
 const checkingWord = () => {
   if (contCorrect == word.length) {
-    alert('Você Ganhou o jogo!');
-    restartGame();
+    wonTheGame();
   }
 }
 
@@ -151,11 +171,23 @@ const restartGame = () => {
   cont = 0;
   contCorrect = 0;
   img.src = `imagens/forca0${cont}.png`;
+  divEndOfTheGame.remove();
   containerButtonLetter.innerHTML = '';
   containerCorrectLetter.innerHTML = '';
   containerWrongLetter.innerHTML = '';
   containerTip.innerHTML = '';
   createButtonsLetter();
+}
+
+const lostTheGame = () => {
+  divEndOfTheGame.className = 'div-end-of-the-game';
+  pDivEndOfTheGame.innerText = 'Você perdeu o jogo';
+  buttonDivEndOfTheGame.className = 'button-div-lost-the-game';
+  buttonDivEndOfTheGame.innerText = 'Voltar ao jogo'
+  divEndOfTheGame.appendChild(pDivEndOfTheGame);
+  divEndOfTheGame.appendChild(buttonDivEndOfTheGame);
+  containerItens.appendChild(divEndOfTheGame);
+  clickButtonDivEndOfTheGame();
 }
 
 const putTheWrongtLetter = (l) => {
@@ -164,14 +196,13 @@ const putTheWrongtLetter = (l) => {
     createDivsLetterWrong(l);
     putImage();
   } else {
-    alert('Você perdeu o jogo');
-    restartGame();
+    lostTheGame();
   }
 }
 
 const checkLetter = () => {
   const letter = event.target.innerHTML;
-  if(letter == '🎮') {
+  if (letter == '🎮') {
     restartGame();
   } else if (word.includes(letter)) {
     putTheCorrectLetter(letter);
