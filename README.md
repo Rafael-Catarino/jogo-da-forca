@@ -1,6 +1,6 @@
 # jogo-da-forca
 
-![foto-tudo-list](imagens/forca-capa.png)
+![foto-tudo-list](image/forca-capa.png)
 
 ***
 
