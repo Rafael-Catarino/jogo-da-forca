@@ -1,4 +1,3 @@
-
 const nomes = [
   "rafael",
   "carlos",
@@ -53,13 +52,13 @@ const tipLetter = [nomes, frutas, animais, cidades];
 const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S',
   'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 
-const containerTip = document.querySelector('#container-tip');
-const containerImage = document.querySelector('#container-image');
-const containerCorrectLetter = document.querySelector('#container-correct-letter');
-const containerButtonLetter = document.querySelector('#container-button-letter');
-const containerWrongLetter = document.querySelector('#container-wrong-letter');
-const containerItens = document.querySelector('#container-itens');
-const img = document.querySelector('img');
+const containerInformation = document.querySelector('.container__information');
+const containerItens = document.querySelector('.container__itens');
+const containerImage = document.querySelector('.container__image');
+const containerImageForce = document.querySelector('.container__image__force');
+const containerLetterCorrect = document.querySelector('.container__letter__correct');
+const containerLetterButton = document.querySelector('.container__letter__button');
+const containerLetterWrong = document.querySelector('.container__letter__wrong');
 const buttonDivEndOfTheGame = document.createElement('button');
 const divEndOfTheGame = document.createElement('div');
 const pDivEndOfTheGame = document.createElement('p');
@@ -70,24 +69,24 @@ let contCorrect = 0;
 const createDivsLetterCorrect = (w) => {
   for (let i = 0; i < w.length; i++) {
     const divLetter = document.createElement('div');
-    divLetter.classList = 'div-letter';
-    containerCorrectLetter.appendChild(divLetter);
+    divLetter.classList = 'div__letter';
+    containerLetterCorrect.appendChild(divLetter);
   }
 }
 
 const createTip = (num) => {
   switch (num) {
     case 0:
-      containerTip.innerHTML = 'DICA: NOME';
+      containerInformation.innerHTML = 'DICA: NOME';
       break;
     case 1:
-      containerTip.innerHTML = 'DICA: FRUTA';
+      containerInformation.innerHTML = 'DICA: FRUTA';
       break;
     case 2:
-      containerTip.innerHTML = 'DICA: ANIMAIS';
+      containerInformation.innerHTML = 'DICA: ANIMAIS';
       break;
     case 3:
-      containerTip.innerHTML = 'DICA: CIDADES';
+      containerInformation.innerHTML = 'DICA: CIDADES';
       break;
   }
 }
@@ -107,8 +106,8 @@ const clickButtonDivEndOfTheGame = () => {
 }
 
 const wonTheGame = () => {
-  divEndOfTheGame.className = 'div-end-of-the-game';
-  pDivEndOfTheGame.innerText = 'Você Venceu';
+  divEndOfTheGame.className = 'div__end__of__the__game';
+  pDivEndOfTheGame.innerText = 'Você Venceu!!';
   buttonDivEndOfTheGame.className = 'button-div-won-the-game';
   buttonDivEndOfTheGame.innerText = 'Voltar ao jogo'
   divEndOfTheGame.appendChild(pDivEndOfTheGame);
@@ -125,7 +124,7 @@ const checkingWord = () => {
 
 const putTheCorrectLetter = (l) => {
   let idxLetter = word.indexOf(l);
-  const divLettersCorrect = document.querySelectorAll('.div-letter');
+  const divLettersCorrect = document.querySelectorAll('.div__letter');
   while (idxLetter != -1) {
     divLettersCorrect[idxLetter].innerHTML = l;
     idxLetter = word.indexOf(l, idxLetter + 1);
@@ -137,32 +136,32 @@ const putTheCorrectLetter = (l) => {
 const createDivsLetterWrong = (l) => {
   const divLetterWorng = document.createElement('div');
   divLetterWorng.innerHTML = l;
-  divLetterWorng.className = 'div-letter';
-  containerWrongLetter.appendChild(divLetterWorng);
+  divLetterWorng.className = 'div__letter';
+  containerLetterWrong.appendChild(divLetterWorng);
 }
 
 const putImage = () => {
   switch (cont) {
     case 1:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 2:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 3:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 4:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 5:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 6:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
     case 7:
-      img.src = `imagens/forca0${cont}.png`;
+      containerImageForce.src = `image/forca0${cont}.png`;
       break;
   }
 }
@@ -170,18 +169,18 @@ const putImage = () => {
 const restartGame = () => {
   cont = 0;
   contCorrect = 0;
-  img.src = `imagens/forca0${cont}.png`;
+  containerImageForce.src = `image/forca0${cont}.png`;
   divEndOfTheGame.remove();
-  containerButtonLetter.innerHTML = '';
-  containerCorrectLetter.innerHTML = '';
-  containerWrongLetter.innerHTML = '';
-  containerTip.innerHTML = '';
+  containerLetterButton.innerHTML = '';
+  containerLetterCorrect.innerHTML = '';
+  containerLetterWrong.innerHTML = '';
+  containerInformation.innerHTML = '';
   createButtonsLetter();
 }
 
 const lostTheGame = () => {
-  divEndOfTheGame.className = 'div-end-of-the-game';
-  pDivEndOfTheGame.innerText = 'Você perdeu o jogo';
+  divEndOfTheGame.className = 'div__end__of__the__game';
+  pDivEndOfTheGame.innerText = `Você perdeu o jogo! \n Palavra:${word}`;
   buttonDivEndOfTheGame.className = 'button-div-lost-the-game';
   buttonDivEndOfTheGame.innerText = 'Voltar ao jogo'
   divEndOfTheGame.appendChild(pDivEndOfTheGame);
@@ -218,8 +217,8 @@ const createButtonStart = () => {
   const buttonStart = document.createElement('button');
   buttonStart.addEventListener('click', checkLetter);
   buttonStart.innerHTML = '🎮';
-  buttonStart.className = 'button-letter';
-  containerButtonLetter.appendChild(buttonStart);
+  buttonStart.className = 'container__letter__button__letter';
+  containerLetterButton.appendChild(buttonStart);
 }
 
 const createButtonsLetter = () => {
@@ -227,8 +226,8 @@ const createButtonsLetter = () => {
     const buttonLetter = document.createElement('button');
     buttonLetter.addEventListener('click', checkLetter);
     buttonLetter.innerHTML = i;
-    buttonLetter.className = 'button-letter';
-    containerButtonLetter.appendChild(buttonLetter);
+    buttonLetter.className = 'container__letter__button__letter';
+    containerLetterButton.appendChild(buttonLetter);
   }
   createButtonStart();
   drawWord();
